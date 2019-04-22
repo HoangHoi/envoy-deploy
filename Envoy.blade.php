@@ -18,8 +18,8 @@
     git
     link-share
     install
-    run-script
-    change-permissions
+    scripts
+    permissions
     update-current
 @endstory
 
@@ -37,7 +37,7 @@
         ln -nfs {{ $path }}/share/{{ $symlink }} {{ $release }}/{{ $symlink }}
     @endforeach
 
-    echo "All symlinks have been set"
+    echo "All symlinks share have been set"
 
     @if (!file_exists('share/.env'))
         cp "{{ $release . '/.env.example' }}" "share/.env"
@@ -55,19 +55,28 @@
     php ./artisan storage:link
 @endtask
 
-@task('run-script')
+@task('scripts')
     cd {{ $release }}
     yarn install --non-interactive
     yarn prod
 @endtask
 
-@task('change-permissions')
-    chmod 777 -R {{ $release }}/storage
-    chmod 777 -R {{ $path }}/share/storage
-    chmod 777 -R {{ $release }}/bootstrap/cache
+@task('permissions')
+    {{-- chmod -R ug+rwx {{ $release }}/storage --}}
+    {{-- chmod -R ug+rwx {{ $path }}/share/storage --}}
+    {{-- chmod -R ug+rwx {{ $release }}/bootstrap/cache --}}
+    find {{ $release }}/storage -type d -exec chmod ug+rwx {} \;
+    find share/storage -type d -exec chmod ug+rwx {} \;
+    find {{ $release }}/bootstrap/cache -type d -exec chmod ug+rwx {} \;
 @endtask
 
-@task('update-current', ['on' => $on])
+@task('update-current')
 	rm -rf {{ $path }}/current
-	ln -nfs {{ $path }}/{{ $release }} {{ $path }}/current
+    ln -nfs {{ $path }}/{{ $release }} {{ $path }}/current
+
+    echo "Link current folder to {{ $release }}"
 @endtask
+
+@finished
+    echo "Finished!!!!";
+@endfinished
