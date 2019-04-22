@@ -24,7 +24,7 @@
 @endstory
 
 @task('git')
-    git clone -b {{ $branch ?? $defaultBrand }} "{{ $gitRepo }}" "{{ $release }}"
+    git clone -b {{ $branch ?? $defaultBrand }} {{ $gitRepo }} {{ $release }}
 @endtask
 
 @task('link-share')
