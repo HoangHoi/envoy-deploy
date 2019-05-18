@@ -1,3 +1,6 @@
 *
 !.gitignore
 !Envoy.blade.php
+!readme.md
+!package.json
+!server.js

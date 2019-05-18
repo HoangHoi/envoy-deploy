@@ -1,0 +1,22 @@
+{
+  "name": "envoy-deploy",
+  "version": "1.0.0",
+  "description": "``` composer global require laravel/envoy ```",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoangHoi/envoy-deploy.git"
+  },
+  "author": "Hoang Hoi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HoangHoi/envoy-deploy/issues"
+  },
+  "homepage": "https://github.com/HoangHoi/envoy-deploy#readme",
+  "dependencies": {
+    "githubhook": "^1.9.3"
+  }
+}
