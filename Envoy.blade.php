@@ -3,7 +3,7 @@
 @setup
     $path = __DIR__;
     $now = new DateTime();
-    $gitRepo = 'git@github.com:HoangHoi/envoy-auto-deploy.git';
+    $gitRepo = 'git@github.com:HoangHoi/laravel-test.git';
     $defaultBrand = 'master';
     $release = 'releases/' . $now->format('Y-m-d_H-i-s');
 
